@@ -30,3 +30,11 @@ class DefaultResponseDeserializer(ResponseDeserializer):
             "PydanticValidatorModel", __root__=(deserialize_to, ...), __config__=Config
         )
         return pydantic_validator_model(__root__=model_body).__root__
+
+
+class NoValidationResponseDeserializer(ResponseDeserializer):
+    """A deserializer that simply returns the body of the response, with no parsing or
+    validation.
+    """
+    def deserialize(self, deserialize_to: ResponseType, model_body) -> DeserializedResponse:
+        return model_body
